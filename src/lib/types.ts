@@ -33,11 +33,13 @@ export interface TimeSeries {
   points: TimeSeriesPoint[];
 }
 
-/** Monogram badge shown in place of a real logo. */
+/** Company logo: an image under /public when available, else a monogram badge. */
 export interface CompanyLogo {
   initials: string;
   /** Badge background, one hex per company. */
   color: string;
+  /** Path to a logo image (e.g. "/logos/jet2.png"); monogram fallback if unset. */
+  src?: string;
 }
 
 export interface Company {

@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meridian — Competitive Intelligence Dashboard
 
-## Getting Started
+**Status: ACTIVE**
 
-First, run the development server:
+A proof-of-concept web application showing how an organisation (a Jet2, a bank, a retailer) could generate structured, executive-grade competitive intelligence reports about any company in a dataset. Pick a company, watch a simulated multi-source analysis run, and land on a full intelligence dashboard: executive summary, financials, market position, customer sentiment, SWOT, risks, competitor comparison and sources.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This is a demonstration of presentation and architecture, not of data collection. Every figure is realistic mock data assembled into the shapes a real pipeline would produce.
+
+![Home](docs/screenshots/home.png)
+
+![Financial snapshot](docs/screenshots/report-financials.png)
+
+![Competitor comparison](docs/screenshots/comparison.png)
+
+![Dark mode](docs/screenshots/dark-mode.png)
+
+## What it does
+
+- Searchable company directory with a card per company
+- Simulated report generation with staged progress ("Collecting company filings", "Benchmarking against sector competitors", ...)
+- A 15-section executive dashboard with scroll-spy navigation:
+  Executive Summary, Company Profile, Business Overview, Financial Snapshot, Market Position, Products & Services, Customer Experience, Digital Presence, Hiring & Growth, Recent News, SWOT, Opportunities, Risks, Competitor Comparison, Sources
+- Interactive competitor comparison: pick up to three competitors, get a best-value-highlighted table and a normalised radar profile
+- Light and dark mode, responsive from 375px to desktop
+
+## Architecture: datasets are plug-ins
+
+The application renders generic types and nothing else. No component knows what an airline is.
+
+```
+src/
+  lib/
+    types.ts        # Dataset, Company, IntelligenceReport - the only vocabulary the UI speaks
+    provider.ts     # IntelligenceProvider interface + MockProvider
+    format.ts       # metric/number formatting
+  data/
+    registry.ts     # every dataset the app can serve
+    datasets/
+      airlines/     # first dataset: 6 European carriers
+        index.ts    # companies, generation steps, comparison dimensions
+        reports/    # one IntelligenceReport per company
+  components/
+    home/           # directory, search, company cards
+    report/         # overlay, nav, 15 section components
+    charts/         # thin theme-aware Recharts wrappers
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Two seams make it reusable:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Datasets.** "Fleet size" is not schema; it is a labelled profile field the airlines dataset chose to supply. Adding banks or AI companies means adding a folder under `src/data/datasets/` and one line in `registry.ts` - zero application-code changes. Comparison dimensions, generation stages and profile fields are all declared per dataset.
+2. **The provider.** All data flows through the `IntelligenceProvider` interface (`src/lib/provider.ts`): `getDatasets`, `getCompanies`, `getReport`, `getComparison`. The mock implementation resolves from local files; a real implementation would call scrapers, APIs or a warehouse behind the same four methods. The generation overlay's fake stages map 1:1 to where real pipeline progress would surface.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack
 
-## Learn More
+Next.js (App Router) · TypeScript · Tailwind CSS 4 · shadcn/ui · Recharts · next-themes. Chart palette is CVD-safe and validated for contrast in both themes.
 
-To learn more about Next.js, take a look at the following resources:
+## Run it
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm install
+pnpm dev        # http://localhost:3000
+pnpm build      # static export of all report pages
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Honest limitations
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- All data is hand-written mock data, accurate in shape and only roughly in figures (mid-2026 public numbers).
+- The generation stages are theatre; nothing is fetched.
+- Company logos are locally stored images used for demonstration only; companies without one fall back to a monogram badge.

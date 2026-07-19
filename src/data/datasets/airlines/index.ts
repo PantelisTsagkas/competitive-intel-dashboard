@@ -21,7 +21,7 @@ export const airlines: Dataset = {
       hq: "Leeds, United Kingdom",
       website: "jet2.com",
       founded: 1983,
-      logo: { initials: "J2", color: "#c8102e" },
+      logo: { initials: "J2", color: "#c8102e", src: "/logos/jet2.png" },
     },
     {
       id: "ryanair",
@@ -31,7 +31,7 @@ export const airlines: Dataset = {
       hq: "Dublin, Ireland",
       website: "ryanair.com",
       founded: 1984,
-      logo: { initials: "RA", color: "#073590" },
+      logo: { initials: "RA", color: "#073590", src: "/logos/ryanair.png" },
     },
     {
       id: "tui",
@@ -41,7 +41,7 @@ export const airlines: Dataset = {
       hq: "Hannover, Germany",
       website: "tuigroup.com",
       founded: 1968,
-      logo: { initials: "TU", color: "#092a5e" },
+      logo: { initials: "TU", color: "#092a5e", src: "/logos/tui.png" },
     },
     {
       id: "easyjet",
@@ -51,7 +51,7 @@ export const airlines: Dataset = {
       hq: "Luton, United Kingdom",
       website: "easyjet.com",
       founded: 1995,
-      logo: { initials: "eJ", color: "#e05206" },
+      logo: { initials: "eJ", color: "#e05206", src: "/logos/easyjet.png" },
     },
     {
       id: "british-airways",
@@ -61,7 +61,7 @@ export const airlines: Dataset = {
       hq: "London, United Kingdom",
       website: "britishairways.com",
       founded: 1974,
-      logo: { initials: "BA", color: "#1e4996" },
+      logo: { initials: "BA", color: "#1e4996", src: "/logos/british-airways.png" },
     },
     {
       id: "wizz-air",
@@ -71,7 +71,7 @@ export const airlines: Dataset = {
       hq: "Budapest, Hungary",
       website: "wizzair.com",
       founded: 2003,
-      logo: { initials: "W6", color: "#c6007e" },
+      logo: { initials: "W6", color: "#c6007e", src: "/logos/wizz-air.png" },
     },
   ],
   generationSteps: [

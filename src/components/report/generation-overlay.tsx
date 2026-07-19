@@ -29,9 +29,12 @@ export function GenerationOverlay({
       const t = setTimeout(() => setCompleted((c) => c + 1), STEP_DURATION_MS);
       return () => clearTimeout(t);
     }
-    setLeaving(true);
-    const t = setTimeout(onComplete, 500);
-    return () => clearTimeout(t);
+    const fade = setTimeout(() => setLeaving(true), 100);
+    const done = setTimeout(onComplete, 600);
+    return () => {
+      clearTimeout(fade);
+      clearTimeout(done);
+    };
   }, [completed, steps.length, onComplete]);
 
   const progress = Math.round((completed / steps.length) * 100);

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, CalendarDays, Globe, MapPin } from "lucide-react";
+import { CompanyLogoBadge } from "@/components/company-logo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import type { Company } from "@/lib/types";
@@ -14,13 +15,7 @@ export function CompanyCard({
   return (
     <Card className="group flex h-full flex-col gap-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md">
       <CardHeader className="flex flex-row items-center gap-3">
-        <span
-          className="flex size-11 shrink-0 items-center justify-center rounded-md font-mono text-sm font-bold text-white"
-          style={{ backgroundColor: company.logo.color }}
-          aria-hidden
-        >
-          {company.logo.initials}
-        </span>
+        <CompanyLogoBadge company={company} />
         <div className="min-w-0">
           <h2 className="truncate text-base font-semibold tracking-tight">
             {company.name}
@@ -55,6 +50,7 @@ export function CompanyCard({
       <CardFooter>
         <Button
           className="w-full"
+          nativeButton={false}
           render={<Link href={`/report/${datasetId}/${company.id}`} />}
         >
           Generate Intelligence Report

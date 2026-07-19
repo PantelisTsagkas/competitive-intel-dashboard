@@ -45,11 +45,15 @@ export function ComparisonRadar({
   return (
     <div className="flex flex-col gap-2">
       <ResponsiveContainer width="100%" height={300}>
-        <RadarChart data={data} margin={{ top: 12, right: 32, bottom: 12, left: 32 }}>
+        <RadarChart
+          data={data}
+          outerRadius="72%"
+          margin={{ top: 12, right: 48, bottom: 12, left: 48 }}
+        >
           <PolarGrid stroke="var(--grid)" />
           <PolarAngleAxis
             dataKey="dimension"
-            tick={{ fill: "var(--muted-foreground)", fontSize: 11 }}
+            tick={{ fill: "var(--muted-foreground)", fontSize: 10 }}
           />
           <Tooltip
             content={({ active, payload, label }) => {

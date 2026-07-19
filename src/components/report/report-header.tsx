@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, CalendarDays, Globe, MapPin } from "lucide-react";
+import { CompanyLogoBadge } from "@/components/company-logo";
 import { Badge } from "@/components/ui/badge";
 import type { Company } from "@/lib/types";
 
@@ -24,13 +25,7 @@ export function ReportHeader({
         </Link>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-center gap-4">
-            <span
-              className="flex size-14 shrink-0 items-center justify-center rounded-md font-mono text-lg font-bold text-white"
-              style={{ backgroundColor: company.logo.color }}
-              aria-hidden
-            >
-              {company.logo.initials}
-            </span>
+            <CompanyLogoBadge company={company} size="lg" />
             <div>
               <div className="flex items-center gap-2.5">
                 <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">

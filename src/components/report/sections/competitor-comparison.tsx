@@ -79,8 +79,8 @@ export function CompetitorComparison({
           );
         })}
       </div>
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-5">
-        <Card className="py-0 xl:col-span-3">
+      <div className="grid grid-cols-1 gap-4">
+        <Card className="py-0">
           <CardContent className="overflow-x-auto px-0">
             <Table>
               <TableHeader>
@@ -139,7 +139,7 @@ export function CompetitorComparison({
             </Table>
           </CardContent>
         </Card>
-        <Card className="xl:col-span-2">
+        <Card>
           <CardHeader>
             <CardTitle className="text-sm">
               Profile shape
