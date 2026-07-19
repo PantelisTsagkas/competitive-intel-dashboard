@@ -3,23 +3,23 @@ import type { IntelligenceReport } from "@/lib/types";
 export const jet2: IntelligenceReport = {
   companyId: "jet2",
   executiveSummary: [
-    "Jet2 plc is the UK's largest tour operator and third-largest airline, flying around 20 million passengers a year from 13 UK bases to roughly 75 leisure destinations. Its integrated model pairs the Jet2.com airline with Jet2holidays, the ATOL-protected package holiday business that now drives the majority of group revenue.",
-    "The group's differentiation is service quality in a segment competitors treat as commodity: it consistently tops UK customer satisfaction surveys, has been named Which? travel brand of the year multiple times, and converts that reputation into premium package pricing and industry-leading repeat booking rates.",
-    "Financially, Jet2 combines double-digit revenue growth with a robust balance sheet and a large fleet renewal programme (up to 146 Airbus A320/A321neo family aircraft on order), giving it lower unit costs and capacity for further base expansion. Key vulnerabilities are its concentration in UK outbound leisure and exposure to consumer discretionary spend.",
+    "Jet2 plc is the UK's largest tour operator and third-largest airline by passengers, carrying a record 20.83 million passengers in FY2026 from 14 UK bases after opening London Gatwick in late March 2026. Its integrated model pairs the Jet2.com airline with Jet2holidays, the ATOL-protected package holiday business: package customers made up 63.3% of flown passengers.",
+    "The group's differentiation is service quality in a segment competitors treat as commodity: it consistently tops UK customer satisfaction surveys, has been named Which? travel brand of the year multiple times, and converts that reputation into premium package pricing (average package price £900 in FY2026) and industry-leading repeat booking rates.",
+    "FY2026 revenue grew 4% to £7.48bn, though profit before tax fell 7% to £551m on Gatwick start-up investment and roughly £50m of increased industry costs. The balance sheet remains strong (£2.0bn net cash, a new £250m buyback) and the fleet renewal programme of up to 146 Airbus A320/A321neo family aircraft continues. Key vulnerabilities are concentration in UK outbound leisure and exposure to consumer discretionary spend.",
   ],
   profile: [
     { label: "Headquarters", value: "Leeds, United Kingdom", icon: "location" },
     { label: "CEO", value: "Steve Heapy", icon: "leader" },
     { label: "Founded", value: "1983 (airline launched 2003)", icon: "calendar" },
-    { label: "Fleet size", value: "135 aircraft", icon: "fleet" },
+    { label: "Fleet size", value: "139 aircraft", icon: "fleet" },
     { label: "Destinations", value: "~75 leisure destinations", icon: "network" },
     { label: "Employees", value: "~18,000 (peak season)", icon: "people" },
-    { label: "Revenue", value: "£7.2bn (FY2025)", icon: "revenue" },
+    { label: "Revenue", value: "£7.48bn (FY2026)", icon: "revenue" },
     { label: "Market position", value: "UK's largest tour operator; #3 UK airline", icon: "position" },
   ],
   businessOverview: {
     description:
-      "Jet2 operates two tightly integrated businesses: Jet2.com, a leisure airline flying from 13 UK bases, and Jet2holidays, the UK's largest ATOL-licensed package holiday operator. Package customers now account for the majority of flown passengers, letting the group capture margin across the whole holiday rather than the flight alone.",
+      "Jet2 operates two tightly integrated businesses: Jet2.com, a leisure airline flying from 14 UK bases after expansion into London Gatwick, Bournemouth and London Luton, and Jet2holidays, the UK's largest ATOL-licensed package holiday operator. Package customers accounted for 63.3% of flown passengers in FY2026, letting the group capture margin across the whole holiday rather than the flight alone.",
     model:
       "Vertically integrated leisure travel: the airline feeds the higher-margin package holiday business, with in-resort service handled by its own destination teams. Revenue is skewed to summer trading, with forward bookings and customer deposits funding working capital.",
     segments: [
@@ -30,7 +30,7 @@ export const jet2: IntelligenceReport = {
       },
       {
         name: "Flight-only (Jet2.com)",
-        detail: "Scheduled leisure flights from 13 UK bases to Mediterranean, Canary Islands and European city destinations.",
+        detail: "Scheduled leisure flights from 14 UK bases to Mediterranean, Canary Islands and European city destinations.",
         revenueShare: 24,
       },
       {
@@ -42,39 +42,41 @@ export const jet2: IntelligenceReport = {
   },
   financials: {
     kpis: [
-      { label: "Revenue", value: 7_200_000_000, format: "currency", unit: "£", delta: 15, deltaLabel: "vs FY2024", deltaSentiment: "positive" },
-      { label: "Profit before tax", value: 593_000_000, format: "currency", unit: "£", delta: 12, deltaLabel: "vs FY2024", deltaSentiment: "positive" },
-      { label: "Passengers flown", value: 19_800_000, format: "number", delta: 12, deltaLabel: "vs FY2024", deltaSentiment: "positive" },
-      { label: "Package holiday customers", value: 6_600_000, format: "number", delta: 9, deltaLabel: "vs FY2024", deltaSentiment: "positive" },
-      { label: "Own cash balance", value: 2_300_000_000, format: "currency", unit: "£", delta: 8, deltaLabel: "vs FY2024", deltaSentiment: "positive" },
-      { label: "Load factor", value: 89.2, format: "percent", delta: -1.1, deltaLabel: "vs FY2024", deltaSentiment: "negative" },
+      { label: "Revenue", value: 7_482_100_000, format: "currency", unit: "£", delta: 4, deltaLabel: "vs FY2025", deltaSentiment: "positive" },
+      { label: "Profit before tax", value: 551_000_000, format: "currency", unit: "£", delta: -7, deltaLabel: "vs FY2025", deltaSentiment: "negative" },
+      { label: "Operating profit", value: 439_600_000, format: "currency", unit: "£", delta: -2, deltaLabel: "vs FY2025", deltaSentiment: "negative" },
+      { label: "Passengers flown", value: 20_830_000, format: "number", delta: 5, deltaLabel: "vs FY2025", deltaSentiment: "positive" },
+      { label: "Package holiday customers", value: 6_620_000, format: "number", delta: 1, deltaLabel: "vs FY2025", deltaSentiment: "positive" },
+      { label: "Net cash", value: 2_012_900_000, format: "currency", unit: "£", delta: -0.2, deltaLabel: "vs FY2025", deltaSentiment: "neutral" },
+      { label: "Load factor", value: 86.8, format: "percent", delta: -1.9, deltaLabel: "ppts vs FY2025", deltaSentiment: "negative" },
+      { label: "Average package price", value: 900, format: "currency", unit: "£", delta: 3, deltaLabel: "vs FY2025", deltaSentiment: "positive" },
     ],
     revenueTrend: {
       label: "Revenue",
       unit: "£bn",
       points: [
-        { period: "FY21", value: 0.4 },
         { period: "FY22", value: 1.2 },
         { period: "FY23", value: 5.0 },
         { period: "FY24", value: 6.3 },
         { period: "FY25", value: 7.2 },
+        { period: "FY26", value: 7.48 },
       ],
     },
     secondaryTrend: {
       label: "Profit before tax",
       unit: "£m",
       points: [
-        { period: "FY21", value: -373 },
         { period: "FY22", value: -389 },
         { period: "FY23", value: 371 },
         { period: "FY24", value: 529 },
         { period: "FY25", value: 593 },
+        { period: "FY26", value: 551 },
       ],
     },
   },
   marketPosition: {
     narrative:
-      "Jet2 holds around 11% of UK outbound seat capacity but a far larger share of the package holiday market, where it overtook TUI as the UK's largest tour operator. Its strength is concentrated in northern England and Scotland, with newer bases (Bournemouth, Luton, Liverpool expansion) pushing into competitors' catchments.",
+      "Jet2 holds around 11% of UK outbound seat capacity but a far larger share of the package holiday market, where it overtook TUI as the UK's largest tour operator. Its strength is concentrated in northern England and Scotland, with newer bases (London Gatwick from March 2026, Bournemouth, Luton) pushing into competitors' catchments in southern England.",
     shareMetricLabel: "UK outbound seat capacity share",
     marketShare: [
       { companyId: "easyjet", name: "easyJet", share: 20 },
@@ -145,7 +147,7 @@ export const jet2: IntelligenceReport = {
   },
   hiringGrowth: {
     summary:
-      "Sustained hiring across cabin crew, engineering and digital, with a new Leeds technology hub and apprenticeship schemes feeding pilot and engineering pipelines. Base openings drive step-changes in local recruitment.",
+      "Sustained hiring across cabin crew, engineering, technology and digital teams supporting national growth, with apprenticeship schemes feeding pilot and engineering pipelines. Base openings, most recently London Gatwick, drive step-changes in local recruitment.",
     openRoles: 420,
     hiringTrend: {
       label: "Open roles (quarterly snapshot)",
@@ -158,24 +160,23 @@ export const jet2: IntelligenceReport = {
     },
     focusAreas: ["Cabin crew & flight deck", "Engineering & maintenance", "Digital & data", "In-resort customer helpers"],
     expansionSignals: [
-      "Up to 146 A320/A321neo family aircraft on order through 2035",
-      "Bournemouth and London Luton bases ramping up",
-      "New Mediterranean routes announced for summer 2027",
+      "Up to 146 A320/A321neo family aircraft on order; fleet at 139",
+      "London Gatwick base opened late March 2026; Bournemouth and Luton ramping up",
+      "Summer 2026 on-sale seat capacity up 7.7% to 19.9m seats",
     ],
   },
   news: [
-    { date: "2026-07-09", headline: "Jet2 adds fourth aircraft at Bournemouth as base exceeds targets", source: "Travel Weekly", category: "Expansion" },
-    { date: "2026-07-02", headline: "Jet2holidays named Which? Travel Brand of the Year for third time", source: "Which?", category: "Awards" },
-    { date: "2026-06-18", headline: "Jet2 plc reports record FY2025 results, PBT up 12% to £593m", source: "Company RNS", category: "Financials" },
-    { date: "2026-05-30", headline: "First A321neo with new cabin enters service from Manchester", source: "Aviation Week", category: "Fleet" },
-    { date: "2026-05-12", headline: "Jet2 launches winter ski programme expansion from Leeds Bradford", source: "TTG Media", category: "Routes" },
-    { date: "2026-04-22", headline: "Jet2 opens Leeds technology hub, creating 150 digital roles", source: "Yorkshire Post", category: "Hiring" },
+    { date: "2026-07-08", headline: "Preliminary FY2026 results: revenue up 4% to £7.48bn, record 20.83m passengers, PBT down 7% to £551m", source: "Company RNS", category: "Financials" },
+    { date: "2026-07-08", headline: "New £250m share buyback announced, expected to complete by May 2027", source: "Company RNS", category: "Capital returns" },
+    { date: "2026-07-08", headline: "Summer 2026 on-sale capacity up 7.7%; booked passengers up 7.1% year on year", source: "Company RNS", category: "Outlook" },
+    { date: "2026-07-08", headline: "London Gatwick base, opened late March 2026, flagged as a once-in-a-generation growth opportunity", source: "Company RNS", category: "Expansion" },
+    { date: "2026-07-08", headline: "Fleet reaches 139 aircraft as A320/A321neo deliveries continue against order of up to 146", source: "Company RNS", category: "Fleet" },
   ],
   swot: {
     strengths: [
       { title: "Brand trust & service reputation", detail: "Consistently the UK's best-rated leisure airline; drives repeat bookings and premium package pricing." },
       { title: "Integrated package model", detail: "Airline capacity feeds higher-margin ATOL-protected holidays, capturing the full holiday wallet." },
-      { title: "Balance sheet strength", detail: "£2.3bn own cash provides resilience and funds the fleet renewal without distress." },
+      { title: "Balance sheet strength", detail: "£2.0bn net cash provides resilience, funds the fleet renewal and supports a £250m share buyback." },
     ],
     weaknesses: [
       { title: "UK-only customer base", detail: "Entirely dependent on UK outbound leisure demand and sterling purchasing power." },
@@ -183,7 +184,7 @@ export const jet2: IntelligenceReport = {
       { title: "Higher unit costs than ULCCs", detail: "Service model carries structurally higher costs than Ryanair or Wizz on comparable routes." },
     ],
     opportunities: [
-      { title: "Southern England expansion", detail: "Recent Bournemouth and Luton bases show the model transfers beyond its northern heartland." },
+      { title: "Southern England expansion", detail: "London Gatwick (opened March 2026), Bournemouth and Luton show the model transfers beyond its northern heartland." },
       { title: "Fleet-driven cost reduction", detail: "A321neo deliveries cut fuel burn per seat ~20% and enable higher-capacity routes." },
       { title: "Premium leisure segments", detail: "Indulgent Escapes and long-haul leisure trials could lift average booking values." },
     ],
@@ -201,7 +202,7 @@ export const jet2: IntelligenceReport = {
     },
     {
       title: "Monetise service premium digitally",
-      detail: "App-led ancillary personalisation lags its physical service reputation.",
+      detail: "The myJet2 account platform gives a route to deeper customer engagement and app-led ancillary personalisation, which still lags its physical service reputation.",
       competitiveAngle: "Ryanair's digital ancillary conversion is materially ahead.",
     },
     {
@@ -215,17 +216,19 @@ export const jet2: IntelligenceReport = {
     { title: "Airbus delivery delays", detail: "Neo delivery slippage would extend the life of older 737-800s and delay unit-cost gains.", severity: "medium", category: "Fleet" },
     { title: "Fuel & carbon price volatility", detail: "Hedging softens but does not remove exposure to jet fuel and UK ETS price rises.", severity: "medium", category: "Cost" },
     { title: "Key-person dependency", detail: "Leadership continuity after long-serving executives is a recurring investor question.", severity: "low", category: "Governance" },
+    { title: "Southern expansion execution", detail: "Gatwick start-up cost £11m in FY2026; growing exposure in southern England adds execution risk while new bases mature.", severity: "medium", category: "Expansion" },
+    { title: "Industry cost inflation", detail: "Around £50m of increased industry-wide costs hit FY2026 profit; labour and airport capacity constraints persist across European aviation.", severity: "medium", category: "Cost" },
   ],
   comparisonValues: {
-    fleet: 135,
+    fleet: 139,
     destinations: 75,
-    passengers: 19.8,
-    revenue: 7_200_000_000,
+    passengers: 20.83,
+    revenue: 7_482_100_000,
     rating: 4.6,
     otp: 76,
   },
   sources: [
-    { type: "Annual report", name: "Jet2 plc Annual Report FY2025", url: "jet2plc.com/investors", freshness: "June 2026" },
+    { type: "Results announcement", name: "Jet2 plc Preliminary Results FY2026 (8 July 2026)", url: "jet2plc.com/investors", freshness: "July 2026" },
     { type: "Company website", name: "Jet2.com & Jet2holidays", url: "jet2.com", freshness: "Live" },
     { type: "Regulatory filing", name: "London Stock Exchange RNS announcements", url: "londonstockexchange.com", freshness: "July 2026" },
     { type: "Customer reviews", name: "Trustpilot — Jet2.com", url: "uk.trustpilot.com/review/www.jet2.com", freshness: "Live" },
