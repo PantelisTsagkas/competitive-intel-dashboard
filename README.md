@@ -1,6 +1,6 @@
 # Meridian — Competitive Intelligence Dashboard
 
-**Status: ACTIVE**
+**Status: ACTIVE** · **Live demo: [competitive-intel-dashboard-nu.vercel.app](https://competitive-intel-dashboard-nu.vercel.app)**
 
 A proof-of-concept web application showing how an organisation (a Jet2, a bank, a retailer) could generate structured, executive-grade competitive intelligence reports about any company in a dataset. Pick a company, watch a simulated multi-source analysis run, and land on a full intelligence dashboard: executive summary, financials, market position, customer sentiment, SWOT, risks, competitor comparison and sources.
 
