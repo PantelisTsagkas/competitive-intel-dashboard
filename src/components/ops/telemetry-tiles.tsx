@@ -89,6 +89,10 @@ const DURATION_MS = 1400;
  *
  * State holds 0-1 progress rather than the value itself, which keeps every
  * setState inside the rAF callback instead of the effect body.
+ *
+ * Every frame is quantised to the target's own precision. `formatValue` prints
+ * whatever it is given, so an unrounded 70.8 * 0.6137 renders as "43.4501%" and
+ * the figure is briefly several characters wider than the tile it sits in.
  */
 function useCountUp(target: number, armed: boolean): number {
   const [progress, setProgress] = useState(0);
@@ -106,5 +110,12 @@ function useCountUp(target: number, armed: boolean): number {
     return () => cancelAnimationFrame(frame);
   }, [target, armed]);
 
-  return armed ? target * progress : target;
+  return armed ? quantise(target * progress, target) : target;
+}
+
+/** Rounds `value` to the number of decimal places `target` itself carries. */
+function quantise(value: number, target: number): number {
+  const decimals = (String(target).split(".")[1] ?? "").length;
+  const factor = 10 ** decimals;
+  return Math.round(value * factor) / factor;
 }

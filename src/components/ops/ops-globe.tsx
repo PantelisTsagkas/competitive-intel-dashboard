@@ -32,8 +32,14 @@ const PHI_AT_GREENWICH = 4.71;
 const SWEEP = 0.25;
 /** One full there-and-back sweep, in frames. */
 const SWEEP_PERIOD = 1400;
-/** Zoom. Past ~1.6 the sphere overflows the square canvas and gets clipped. */
-const SCALE = 1.45;
+/**
+ * Zoom, and it has a hard ceiling. cobe draws the sphere where `dot(b, b) <=
+ * 0.64` with `b = ndc / scale`, so the sphere's radius in clip space is
+ * `0.8 * scale`: past 1.25 it overflows the square canvas and the edges cut
+ * flat, leaving a squircle rather than a globe. The atmosphere fades out around
+ * `|b| = 0.92`, so keeping that intact too caps this at ~1.08.
+ */
+const SCALE = 1.08;
 
 /** Centres the camera on the markers, so any dataset frames its own region. */
 function focusOf(markers: OpsMarker[]): { phi: number; theta: number } {
@@ -171,8 +177,15 @@ export function OpsGlobe({
     };
 
     // Reduced motion still needs one paint to place the markers, just no loop.
+    // cobe's land map is a data-URI image that decodes asynchronously, so that
+    // first paint lands on a bare sphere and, with no loop running, nothing ever
+    // fills it in. A few redraws over the first second cover the decode.
+    const redraws: number[] = [];
     if (reducedMotion) {
       draw();
+      redraws.push(
+        ...[100, 350, 900].map((ms) => window.setTimeout(draw, ms)),
+      );
     } else {
       frame = requestAnimationFrame(render);
     }
@@ -226,6 +239,7 @@ export function OpsGlobe({
 
     return () => {
       cancelAnimationFrame(frame);
+      redraws.forEach(clearTimeout);
       observer.disconnect();
       canvas.removeEventListener("pointerdown", onPointerDown);
       canvas.removeEventListener("pointermove", onPointerMove);
