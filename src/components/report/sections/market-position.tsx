@@ -29,7 +29,7 @@ export function MarketPosition({
         <CardContent className="space-y-4">
           {position.rankings.map((ranking) => (
             <div key={ranking.label} className="flex items-start gap-3">
-              <span className="mt-0.5 flex h-8 min-w-8 shrink-0 items-center justify-center rounded-md bg-muted px-1.5 font-mono text-sm font-bold">
+              <span className="mt-0.5 flex h-8 min-w-8 shrink-0 items-center justify-center border border-[var(--ops-line)] bg-[color-mix(in_oklab,var(--ops-accent)_10%,transparent)] px-1.5 font-mono text-sm font-bold text-[var(--ops-accent)]">
                 #{ranking.rank}
               </span>
               <div>

@@ -22,6 +22,7 @@ export const airlines: Dataset = {
       website: "jet2.com",
       founded: 1983,
       logo: { initials: "J2", color: "#c8102e", src: "/logos/jet2.png" },
+      coordinates: { lat: 53.8, lng: -1.55 },
     },
     {
       id: "ryanair",
@@ -32,6 +33,7 @@ export const airlines: Dataset = {
       website: "ryanair.com",
       founded: 1984,
       logo: { initials: "RA", color: "#073590", src: "/logos/ryanair.png" },
+      coordinates: { lat: 53.35, lng: -6.26 },
     },
     {
       id: "tui",
@@ -42,6 +44,7 @@ export const airlines: Dataset = {
       website: "tuigroup.com",
       founded: 1968,
       logo: { initials: "TU", color: "#092a5e", src: "/logos/tui.png" },
+      coordinates: { lat: 52.37, lng: 9.73 },
     },
     {
       id: "easyjet",
@@ -52,6 +55,7 @@ export const airlines: Dataset = {
       website: "easyjet.com",
       founded: 1995,
       logo: { initials: "eJ", color: "#e05206", src: "/logos/easyjet.png" },
+      coordinates: { lat: 51.88, lng: -0.42 },
     },
     {
       id: "british-airways",
@@ -62,6 +66,7 @@ export const airlines: Dataset = {
       website: "britishairways.com",
       founded: 1974,
       logo: { initials: "BA", color: "#1e4996", src: "/logos/british-airways.png" },
+      coordinates: { lat: 51.51, lng: -0.13 },
     },
     {
       id: "wizz-air",
@@ -72,6 +77,7 @@ export const airlines: Dataset = {
       website: "wizzair.com",
       founded: 2003,
       logo: { initials: "W6", color: "#c6007e", src: "/logos/wizz-air.png" },
+      coordinates: { lat: 47.5, lng: 19.04 },
     },
   ],
   generationSteps: [

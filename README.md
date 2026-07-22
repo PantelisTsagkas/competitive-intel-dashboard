@@ -6,13 +6,13 @@ A proof-of-concept web application showing how an organisation (a Jet2, a bank, 
 
 This is a demonstration of presentation and architecture, not of data collection. Every figure is realistic mock data assembled into the shapes a real pipeline would produce.
 
-![Home](docs/screenshots/home.png)
+![Ops console](docs/screenshots/home.png)
+
+![Target directory](docs/screenshots/directory.png)
 
 ![Financial snapshot](docs/screenshots/report-financials.png)
 
 ![Competitor comparison](docs/screenshots/comparison.png)
-
-![Dark mode](docs/screenshots/dark-mode.png)
 
 ## What it does
 
@@ -21,7 +21,7 @@ This is a demonstration of presentation and architecture, not of data collection
 - A 15-section executive dashboard with scroll-spy navigation:
   Executive Summary, Company Profile, Business Overview, Financial Snapshot, Market Position, Products & Services, Customer Experience, Digital Presence, Hiring & Growth, Recent News, SWOT, Opportunities, Risks, Competitor Comparison, Sources
 - Interactive competitor comparison: pick up to three competitors, get a best-value-highlighted table and a normalised radar profile
-- Light and dark mode, responsive from 375px to desktop
+- Single dark console theme, responsive from 375px to desktop
 
 ## Architecture: datasets are plug-ins
 
@@ -52,7 +52,7 @@ Two seams make it reusable:
 
 ## Stack
 
-Next.js (App Router) · TypeScript · Tailwind CSS 4 · shadcn/ui · Recharts · next-themes. Chart palette is CVD-safe and validated for contrast in both themes.
+Next.js (App Router) · TypeScript · Tailwind CSS 4 · shadcn/ui · Recharts · cobe. One theme throughout: a dark operations-console palette defined as CSS variables, with a chart palette designed to stay distinguishable for colour-vision deficiency and checked for contrast against it.
 
 ## Run it
 

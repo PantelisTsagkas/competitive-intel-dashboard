@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { Providers } from "@/components/providers";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -26,13 +25,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // The product has one theme, the console's. `dark` is fixed on the root so
+    // shadcn's `dark:` variants and the console's own tokens agree everywhere;
+    // there is no theme provider and nothing to toggle.
     <html
       lang="en"
-      className={`${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
-      suppressHydrationWarning
+      className={`dark ${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Providers>{children}</Providers>
+        {children}
         <Analytics />
       </body>
     </html>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { GenerationOverlay } from "@/components/report/generation-overlay";
 import { ReportHeader } from "@/components/report/report-header";
@@ -125,12 +126,7 @@ export function ReportView({
           ))}
         </div>
       </div>
-      <footer className="border-t border-border/70 py-6">
-        <p className="mx-auto max-w-6xl px-4 font-mono text-xs text-muted-foreground sm:px-6">
-          MERIDIAN &mdash; proof of concept. All report data is illustrative mock
-          data assembled from public-source formats.
-        </p>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

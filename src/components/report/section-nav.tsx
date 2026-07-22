@@ -38,19 +38,19 @@ export function SectionNav({ items }: { items: NavItem[] }) {
       href={`#${item.id}`}
       aria-current={activeId === item.id ? "true" : undefined}
       className={cn(
-        "text-sm transition-colors",
+        "font-mono text-[11px] uppercase tracking-[0.12em] transition-colors",
         layout === "side" &&
-          "block border-l-2 py-1 pl-3 text-muted-foreground hover:text-foreground",
+          "block border-l-2 py-1.5 pl-3 text-muted-foreground hover:text-foreground",
         layout === "side" &&
           (activeId === item.id
-            ? "border-foreground font-medium text-foreground"
-            : "border-border"),
+            ? "border-[var(--ops-accent)] font-medium text-[var(--ops-accent)]"
+            : "border-[var(--ops-line)]"),
         layout === "chip" &&
-          "shrink-0 rounded-full border px-3 py-1 text-xs whitespace-nowrap",
+          "shrink-0 border px-2.5 py-1 text-[10px] whitespace-nowrap",
         layout === "chip" &&
           (activeId === item.id
-            ? "border-foreground bg-foreground font-medium text-background"
-            : "border-border text-muted-foreground"),
+            ? "border-[var(--ops-accent)] bg-[var(--ops-accent)]/15 font-medium text-[var(--ops-accent)]"
+            : "border-[var(--ops-line)] text-muted-foreground"),
       )}
     >
       {item.label}
@@ -69,7 +69,7 @@ export function SectionNav({ items }: { items: NavItem[] }) {
       {/* Mobile chip row */}
       <nav
         aria-label="Report sections"
-        className="sticky top-14 z-30 -mx-4 flex gap-2 overflow-x-auto border-b border-border/70 bg-background/95 px-4 py-2.5 backdrop-blur lg:hidden"
+        className="sticky top-14 z-30 -mx-4 flex gap-2 overflow-x-auto border-b border-[var(--ops-line)] bg-background/95 px-4 py-2.5 backdrop-blur lg:hidden"
       >
         {items.map((item) => link(item, "chip"))}
       </nav>

@@ -40,9 +40,9 @@ export function BusinessOverview({
                 ) : null}
               </div>
               {segment.revenueShare !== undefined && shares.length > 0 ? (
-                <div className="mb-1.5 h-1.5 w-full rounded-full bg-muted">
+                <div className="mb-1.5 h-1.5 w-full bg-[color-mix(in_oklab,var(--ops-accent)_14%,transparent)]">
                   <div
-                    className="h-full rounded-full bg-chart-1"
+                    className="h-full bg-chart-1"
                     style={{ width: `${segment.revenueShare}%` }}
                   />
                 </div>
