@@ -26,7 +26,7 @@ export function SiteHeader({ datasetLabel }: { datasetLabel?: string }) {
               {datasetLabel}
             </span>
           ) : null}
-          <span className="hidden items-center gap-1.5 sm:flex">
+          <span className="flex items-center gap-1.5">
             <span
               className="ops-pulse size-1.5 rounded-full bg-[var(--ops-phosphor)]"
               aria-hidden
