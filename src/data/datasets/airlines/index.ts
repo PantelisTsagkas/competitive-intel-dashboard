@@ -5,6 +5,7 @@ import { tui } from "./reports/tui";
 import { easyjet } from "./reports/easyjet";
 import { britishAirways } from "./reports/british-airways";
 import { wizzAir } from "./reports/wizz-air";
+import { upcomingAirlines } from "./upcoming";
 
 export const airlines: Dataset = {
   id: "airlines",
@@ -80,6 +81,7 @@ export const airlines: Dataset = {
       coordinates: { lat: 47.5, lng: 19.04 },
     },
   ],
+  upcomingCompanies: upcomingAirlines,
   generationSteps: [
     "Collecting company filings & annual reports",
     "Scanning press releases & route announcements",

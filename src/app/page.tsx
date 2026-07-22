@@ -8,6 +8,7 @@ import { provider } from "@/lib/provider";
 export default async function HomePage() {
   const [meta] = await provider.getDatasets();
   const dataset = await provider.getDataset(meta.id);
+  const upcoming = await provider.getUpcomingCompanies(meta.id);
   // Derived on the server: the client receives a small serialisable object,
   // not the full report set.
   const opsFeed = buildOpsFeed(dataset);
@@ -39,6 +40,7 @@ export default async function HomePage() {
         <CompanyDirectory
           datasetId={dataset.id}
           companies={dataset.companies}
+          upcoming={upcoming}
           entityLabel={dataset.entityLabel}
         />
       </main>

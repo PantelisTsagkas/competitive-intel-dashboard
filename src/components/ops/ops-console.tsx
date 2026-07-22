@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { useReducedMotion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { RiskReadout } from "@/components/ops/risk-readout";
 import { SectorTerminal } from "@/components/ops/sector-terminal";
@@ -11,6 +10,7 @@ import { StatusBar } from "@/components/ops/status-bar";
 import { TelemetryTiles } from "@/components/ops/telemetry-tiles";
 import { GlobePlaceholder } from "@/components/ops/ops-globe";
 import { Button } from "@/components/ui/button";
+import { usePrefersReducedMotion } from "@/lib/use-reduced-motion";
 import type { OpsFeed } from "@/lib/ops-feed";
 
 /** WebGL stays out of the initial bundle and off the server render path. */
@@ -38,7 +38,9 @@ export function OpsConsole({
   datasetName: string;
   entityLabel: string;
 }) {
-  const reducedMotion = useReducedMotion() ?? false;
+  // Not motion's hook: this branch changes markup, so it has to survive
+  // hydration. See use-reduced-motion.ts.
+  const reducedMotion = usePrefersReducedMotion();
   const [trackIndex, setTrackIndex] = useState(0);
 
   // Cycles the "locked" company: highlights its globe marker and names it in

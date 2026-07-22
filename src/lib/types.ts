@@ -60,6 +60,21 @@ export interface Company {
   coordinates?: Coordinates;
 }
 
+/**
+ * A company the dataset names but has not profiled yet.
+ *
+ * Deliberately thinner than `Company`: there is no report behind it, no figures
+ * and no coordinates, so it is never counted in the telemetry, never plotted on
+ * the globe and never routed to. The directory lists it as a queued target so
+ * the coverage roadmap is visible without inventing data to fill it.
+ */
+export interface UpcomingCompany {
+  id: string;
+  name: string;
+  hq: string;
+  logo: CompanyLogo;
+}
+
 /** One row of the Company Profile section. Labels are dataset-defined. */
 export interface ProfileField {
   label: string;
@@ -229,6 +244,8 @@ export interface DatasetMeta {
 
 export interface Dataset extends DatasetMeta {
   companies: Company[];
+  /** Named but not yet profiled; listed in the directory, absent everywhere else. */
+  upcomingCompanies?: UpcomingCompany[];
   /** Simulated analysis stages shown while a report "generates". */
   generationSteps: string[];
   comparisonDimensions: ComparisonDimension[];

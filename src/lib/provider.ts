@@ -5,6 +5,7 @@ import type {
   Dataset,
   DatasetMeta,
   IntelligenceReport,
+  UpcomingCompany,
 } from "@/lib/types";
 
 /**
@@ -18,6 +19,8 @@ export interface IntelligenceProvider {
   getDatasets(): Promise<DatasetMeta[]>;
   getDataset(datasetId: string): Promise<Dataset>;
   getCompanies(datasetId: string): Promise<Company[]>;
+  /** Named but unprofiled targets. Empty when a dataset declares none. */
+  getUpcomingCompanies(datasetId: string): Promise<UpcomingCompany[]>;
   getReport(datasetId: string, companyId: string): Promise<IntelligenceReport>;
   getComparison(datasetId: string): Promise<ComparisonData>;
 }
@@ -44,6 +47,10 @@ class MockProvider implements IntelligenceProvider {
 
   async getCompanies(datasetId: string): Promise<Company[]> {
     return this.find(datasetId).companies;
+  }
+
+  async getUpcomingCompanies(datasetId: string): Promise<UpcomingCompany[]> {
+    return this.find(datasetId).upcomingCompanies ?? [];
   }
 
   async getReport(datasetId: string, companyId: string): Promise<IntelligenceReport> {

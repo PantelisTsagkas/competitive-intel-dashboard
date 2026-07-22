@@ -36,8 +36,9 @@ src/
   data/
     registry.ts     # every dataset the app can serve
     datasets/
-      airlines/     # first dataset: 6 European carriers
+      airlines/     # first dataset: 6 profiled carriers, 30 queued
         index.ts    # companies, generation steps, comparison dimensions
+        upcoming.ts # named but unprofiled targets, listed only
         reports/    # one IntelligenceReport per company
   components/
     home/           # directory, search, company cards
@@ -66,4 +67,5 @@ pnpm build      # static export of all report pages
 
 - All data is hand-written mock data, accurate in shape and only roughly in figures (mid-2026 public numbers).
 - The generation stages are theatre; nothing is fetched.
+- The coverage queue under the directory is exactly that: 30 carriers named with an HQ and a badge, nothing more. No report exists behind them, none is generated, and they are excluded from the console telemetry, the globe and the comparison.
 - Company logos are locally stored images used for demonstration only; companies without one fall back to a monogram badge.

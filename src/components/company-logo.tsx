@@ -12,7 +12,9 @@ export function CompanyLogoBadge({
   company,
   size = "md",
 }: {
-  company: Company;
+  // Narrowed to what the badge actually reads, so an unprofiled
+  // `UpcomingCompany` can wear one too.
+  company: Pick<Company, "name" | "logo">;
   size?: "md" | "lg";
 }) {
   const box = size === "lg" ? "size-14" : "size-11";

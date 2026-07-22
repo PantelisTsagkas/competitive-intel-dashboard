@@ -3,16 +3,19 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { CompanyCard } from "@/components/home/company-card";
+import { UpcomingCard } from "@/components/home/upcoming-card";
 import { Input } from "@/components/ui/input";
-import type { Company } from "@/lib/types";
+import type { Company, UpcomingCompany } from "@/lib/types";
 
 export function CompanyDirectory({
   datasetId,
   companies,
+  upcoming,
   entityLabel,
 }: {
   datasetId: string;
   companies: Company[];
+  upcoming: UpcomingCompany[];
   entityLabel: string;
 }) {
   const [query, setQuery] = useState("");
@@ -27,6 +30,15 @@ export function CompanyDirectory({
         c.hq.toLowerCase().includes(q),
     );
   }, [companies, query]);
+
+  // Queued targets match on the little they carry: a name and a location.
+  const filteredUpcoming = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return upcoming;
+    return upcoming.filter(
+      (c) => c.name.toLowerCase().includes(q) || c.hq.toLowerCase().includes(q),
+    );
+  }, [upcoming, query]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -48,22 +60,49 @@ export function CompanyDirectory({
           {filtered.length}/{companies.length}
         </span>
       </div>
-      {filtered.length === 0 ? (
+      {filtered.length === 0 && filteredUpcoming.length === 0 ? (
         <p className="py-16 text-center font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
           No {entityLabel.toLowerCase()} match &ldquo;{query}&rdquo;
         </p>
       ) : (
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((company, i) => (
-            <li
-              key={company.id}
-              className="animate-in fade-in slide-in-from-bottom-2 fill-mode-both"
-              style={{ animationDelay: `${i * 60}ms`, animationDuration: "400ms" }}
-            >
-              <CompanyCard datasetId={datasetId} company={company} />
-            </li>
-          ))}
-        </ul>
+        <>
+          {filtered.length > 0 ? (
+            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((company, i) => (
+                <li
+                  key={company.id}
+                  className="animate-in fade-in slide-in-from-bottom-2 fill-mode-both"
+                  style={{ animationDelay: `${i * 60}ms`, animationDuration: "400ms" }}
+                >
+                  <CompanyCard datasetId={datasetId} company={company} />
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          {/* The queue: named targets with no report behind them. Denser tiles
+              and no stagger, so thirty of them stay clearly secondary to the
+              handful that are actually profiled. */}
+          {filteredUpcoming.length > 0 ? (
+            <section className="mt-4 flex flex-col gap-4 border-t border-[var(--ops-line)] pt-6">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  Coverage queue
+                </h3>
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground/70">
+                  {filteredUpcoming.length} of {upcoming.length} awaiting profile
+                </span>
+              </div>
+              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                {filteredUpcoming.map((company) => (
+                  <li key={company.id}>
+                    <UpcomingCard company={company} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+        </>
       )}
     </div>
   );
