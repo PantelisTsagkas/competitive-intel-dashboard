@@ -37,9 +37,9 @@ export function CustomerExperience({
                       </span>
                     </p>
                   </div>
-                  <div className="h-1.5 w-full rounded-full bg-muted">
+                  <div className="h-1.5 w-full bg-[color-mix(in_oklab,var(--ops-accent)_14%,transparent)]">
                     <div
-                      className="h-full rounded-full bg-chart-1"
+                      className="h-full bg-chart-1"
                       style={{ width: `${(source.score / source.outOf) * 100}%` }}
                     />
                   </div>

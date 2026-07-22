@@ -52,8 +52,8 @@ export function CompetitorComparison({
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="mr-1 text-xs text-muted-foreground">
-          Compare against (up to {MAX_COMPETITORS}):
+        <span className="mr-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+          Compare against (max {MAX_COMPETITORS})
         </span>
         {competitors.map((row) => {
           const selected = selectedIds.includes(row.company.id);
@@ -66,10 +66,10 @@ export function CompetitorComparison({
               disabled={disabled}
               aria-pressed={selected}
               className={cn(
-                "flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs transition-colors",
+                "flex items-center gap-1.5 border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] transition-colors",
                 selected
-                  ? "border-foreground bg-foreground font-medium text-background"
-                  : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground",
+                  ? "border-[var(--ops-accent)] bg-[var(--ops-accent)]/15 font-medium text-[var(--ops-accent)]"
+                  : "border-[var(--ops-line)] text-muted-foreground hover:border-[var(--ops-line-strong)] hover:text-foreground",
                 disabled && "cursor-not-allowed opacity-40",
               )}
             >

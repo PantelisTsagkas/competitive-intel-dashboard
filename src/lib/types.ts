@@ -42,6 +42,12 @@ export interface CompanyLogo {
   src?: string;
 }
 
+/** Geographic point, used to place a company on a map or globe. */
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
+
 export interface Company {
   id: string;
   name: string;
@@ -50,6 +56,8 @@ export interface Company {
   website: string;
   founded: number;
   logo: CompanyLogo;
+  /** HQ coordinates. Companies without them are simply not plotted. */
+  coordinates?: Coordinates;
 }
 
 /** One row of the Company Profile section. Labels are dataset-defined. */

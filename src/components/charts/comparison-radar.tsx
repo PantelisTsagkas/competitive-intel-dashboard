@@ -47,8 +47,10 @@ export function ComparisonRadar({
       <ResponsiveContainer width="100%" height={300}>
         <RadarChart
           data={data}
-          outerRadius="72%"
-          margin={{ top: 12, right: 48, bottom: 12, left: 48 }}
+          outerRadius="66%"
+          // Generous side margins: dimension labels are dataset-supplied and can
+          // be long ("On-time performance"), and they clip at phone widths.
+          margin={{ top: 12, right: 62, bottom: 12, left: 62 }}
         >
           <PolarGrid stroke="var(--grid)" />
           <PolarAngleAxis

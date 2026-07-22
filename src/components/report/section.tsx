@@ -19,16 +19,19 @@ export function ReportSection({
 }) {
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-28">
-      <div className="mb-4 flex items-baseline gap-3">
-        <span className="font-mono text-xs font-semibold text-muted-foreground">
+      <div className="mb-4 flex items-baseline gap-3 border-b border-[var(--ops-line)] pb-2.5">
+        <span className="font-mono text-xs font-semibold text-[var(--ops-accent)]">
           {String(index).padStart(2, "0")}
         </span>
         <div>
-          <h2 id={`${id}-title`} className="text-lg font-semibold tracking-tight">
+          <h2
+            id={`${id}-title`}
+            className="font-mono text-sm font-semibold uppercase tracking-[0.16em]"
+          >
             {title}
           </h2>
           {description ? (
-            <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{description}</p>
           ) : null}
         </div>
       </div>
@@ -44,10 +47,14 @@ export function StatTile({ metric }: { metric: Metric }) {
     direction === "up" ? ArrowUpRight : direction === "down" ? ArrowDownRight : Minus;
 
   return (
+    // Same instrument look as the console's telemetry tiles: mono caption, mono
+    // tabular figure, coloured delta.
     <Card className="gap-0 py-4">
-      <CardContent className="flex flex-col gap-1 px-4">
-        <p className="text-xs font-medium text-muted-foreground">{metric.label}</p>
-        <p className="font-mono text-xl font-semibold tracking-tight sm:text-2xl">
+      <CardContent className="flex flex-col gap-1.5 px-4">
+        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+          {metric.label}
+        </p>
+        <p className="font-mono text-xl font-semibold tabular-nums tracking-tight sm:text-2xl">
           {formatMetric(metric)}
         </p>
         {metric.delta !== undefined || metric.deltaLabel ? (

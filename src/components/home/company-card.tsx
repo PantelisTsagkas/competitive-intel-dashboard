@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, CalendarDays, Globe, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { CompanyLogoBadge } from "@/components/company-logo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import type { Company } from "@/lib/types";
 
+/** Console target card: bracketed panel, mono metadata, one action. */
 export function CompanyCard({
   datasetId,
   company,
@@ -13,14 +14,14 @@ export function CompanyCard({
   company: Company;
 }) {
   return (
-    <Card className="group flex h-full flex-col gap-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md">
+    <Card className="ops-panel ops-panel-interactive group flex h-full flex-col gap-4 transition-colors">
       <CardHeader className="flex flex-row items-center gap-3">
         <CompanyLogoBadge company={company} />
         <div className="min-w-0">
-          <h2 className="truncate text-base font-semibold tracking-tight">
+          <h2 className="truncate font-mono text-base font-semibold tracking-[0.06em] uppercase">
             {company.name}
           </h2>
-          <p className="truncate font-mono text-xs text-muted-foreground">
+          <p className="truncate font-mono text-[11px] tracking-[0.1em] text-[var(--ops-accent)]">
             {company.website}
           </p>
         </div>
@@ -29,34 +30,41 @@ export function CompanyCard({
         <p className="text-sm leading-relaxed text-muted-foreground">
           {company.shortDescription}
         </p>
-        <dl className="mt-auto space-y-1.5 text-xs text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <MapPin className="size-3.5 shrink-0" aria-hidden />
+        <dl className="mt-auto flex flex-wrap gap-x-4 gap-y-1.5 border-t border-[var(--ops-line)] pt-3 font-mono text-[10px] tracking-[0.14em] uppercase text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <Tick />
             <dt className="sr-only">Headquarters</dt>
             <dd>{company.hq}</dd>
           </div>
-          <div className="flex items-center gap-2">
-            <CalendarDays className="size-3.5 shrink-0" aria-hidden />
+          <div className="flex items-center gap-1.5">
+            <Tick />
             <dt className="sr-only">Founded</dt>
-            <dd>Founded {company.founded}</dd>
-          </div>
-          <div className="flex items-center gap-2">
-            <Globe className="size-3.5 shrink-0" aria-hidden />
-            <dt className="sr-only">Website</dt>
-            <dd>{company.website}</dd>
+            <dd>Est {company.founded}</dd>
           </div>
         </dl>
       </CardContent>
       <CardFooter>
+        {/* Outlined until hover: six solid blue blocks would outshout the data
+            they sit under. */}
         <Button
-          className="w-full"
+          variant="outline"
+          className="w-full border-[var(--ops-line-strong)] bg-transparent text-[var(--ops-accent)] hover:bg-[var(--ops-accent)] hover:text-[var(--primary-foreground)]"
           nativeButton={false}
           render={<Link href={`/report/${datasetId}/${company.id}`} />}
         >
-          Generate Intelligence Report
+          Generate report
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
         </Button>
       </CardFooter>
     </Card>
+  );
+}
+
+function Tick() {
+  return (
+    <span
+      className="size-1 shrink-0 bg-[var(--ops-accent)]"
+      aria-hidden
+    />
   );
 }

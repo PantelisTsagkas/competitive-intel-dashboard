@@ -51,79 +51,63 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: #2a78d6;
-  --chart-2: #008300;
-  --chart-3: #e87ba4;
-  --chart-4: #eda100;
-  --chart-5: #1baf7a;
-  --success: #006300;
-  --danger: #d03b3b;
-  --grid: #e1e0d9;
-  --radius: 0.45rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+/* ---------------------------------------------------------------------------
+   One theme: the ops console palette.
+   There is no light mode. The whole product is the console, so the signature
+   tokens (accent, phosphor, hairline) live at the root and every surface -
+   header, cards, tables, charts - reads the same set.
+   --------------------------------------------------------------------------- */
 
-.dark {
-  --background: oklch(0.145 0 0);
+:root {
+  color-scheme: dark;
+
+  /* Console signature. */
+  --ops-accent: #3987e5;
+  --ops-phosphor: #1fd18a;
+  --ops-line: color-mix(in oklab, var(--ops-accent) 22%, transparent);
+  --ops-line-strong: color-mix(in oklab, var(--ops-accent) 42%, transparent);
+  --ops-glow: color-mix(in oklab, var(--ops-accent) 12%, transparent);
+  --ops-scan: color-mix(in oklab, #ffffff 4%, transparent);
+  /* Panel fill: a touch lighter than the page, still clearly on the console. */
+  --ops-surface: oklch(0.185 0.008 250);
+
+  --background: oklch(0.145 0.006 250);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: var(--ops-surface);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.205 0.008 250);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  /* Primary is the accent: every call to action reads as console blue. */
+  --primary: var(--ops-accent);
+  --primary-foreground: oklch(0.145 0.006 250);
+  --secondary: oklch(0.255 0.008 250);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --muted: oklch(0.245 0.008 250);
+  --muted-foreground: oklch(0.72 0.012 250);
+  --accent: oklch(0.255 0.01 250);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: var(--ops-line);
+  --input: color-mix(in oklab, var(--ops-accent) 30%, transparent);
+  --ring: var(--ops-accent);
   --chart-1: #3987e5;
-  --chart-2: #008300;
+  --chart-2: #1fd18a;
   --chart-3: #d55181;
   --chart-4: #c98500;
-  --chart-5: #199e70;
-  --success: #0ca30c;
-  --danger: #d03b3b;
-  --grid: #2c2c2a;
-  --sidebar: oklch(0.205 0 0);
+  --chart-5: #9d7bea;
+  --success: #1fd18a;
+  --danger: #e35d5d;
+  --grid: color-mix(in oklab, var(--ops-accent) 16%, transparent);
+  /* Square corners everywhere: the console has no rounded softness. */
+  --radius: 0rem;
+  --sidebar: var(--ops-surface);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-primary: var(--ops-accent);
+  --sidebar-primary-foreground: oklch(0.145 0.006 250);
+  --sidebar-accent: oklch(0.255 0.01 250);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-border: var(--ops-line);
+  --sidebar-ring: var(--ops-accent);
 }
 
 @layer base {
@@ -135,5 +119,191 @@
   }
   html {
     @apply font-sans;
+  }
+  /* Data is monospace, prose is not. Headings stay in the body face so report
+     sections keep reading like documents rather than log output. */
+  th,
+  [data-slot="table-head"] {
+    @apply font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground;
+  }
+}
+
+/* Mono label: the console's caption voice, used from the header to the tables. */
+.ops-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted-foreground);
+}
+
+/* Section rule with a leading accent tick. */
+.ops-rule {
+  border-top: 1px solid var(--ops-line);
+  box-shadow: inset 2px 0 0 0 var(--ops-accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Console surfaces
+   The tokens above are global; what follows is the heavy CRT treatment, which
+   stays on hero-level surfaces only. Report prose never sits on a moving grid.
+   Every animation here is switched off wholesale by the reduced-motion block
+   at the bottom.
+   --------------------------------------------------------------------------- */
+
+/* Slowly drifting engineering grid. */
+.ops-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--ops-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--ops-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity: 0.35;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%);
+  animation: ops-grid-pan 24s linear infinite;
+}
+
+/* CRT scanlines, kept faint enough to read text through. */
+.ops-scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--ops-scan) 0px,
+    var(--ops-scan) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+/* Bordered panel with corner brackets. */
+/* Bracketed panel. Used for the console's own panels and, page-wide, for cards
+   and tables, so every framed thing on the site is framed the same way. */
+.ops-panel {
+  position: relative;
+  border: 1px solid var(--ops-line);
+  background: color-mix(in oklab, var(--ops-surface) 88%, transparent);
+  box-shadow: inset 0 0 40px -20px var(--ops-glow);
+}
+
+/* Corner brackets brighten on hover for anything interactive. */
+.ops-panel-interactive:hover {
+  border-color: var(--ops-line-strong);
+}
+
+.ops-panel-interactive:hover::before,
+.ops-panel-interactive:hover::after {
+  opacity: 1;
+  width: 13px;
+  height: 13px;
+}
+
+.ops-panel::before,
+.ops-panel::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-color: var(--ops-accent);
+  opacity: 0.65;
+  pointer-events: none;
+  transition:
+    width 150ms ease,
+    height 150ms ease,
+    opacity 150ms ease;
+}
+
+.ops-panel::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.ops-panel::after {
+  right: -1px;
+  bottom: -1px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.ops-pulse {
+  animation: ops-pulse 2s ease-in-out infinite;
+}
+
+/* Horizontal signal ticker. The track is duplicated, so -50% loops seamlessly. */
+.ops-marquee {
+  display: flex;
+  width: max-content;
+  animation: ops-marquee 70s linear infinite;
+}
+
+.ops-marquee-host:hover .ops-marquee {
+  animation-play-state: paused;
+}
+
+.ops-sweep {
+  animation: ops-sweep 6s ease-in-out infinite;
+}
+
+@keyframes ops-grid-pan {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 44px 44px, 44px 44px;
+  }
+}
+
+@keyframes ops-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ops-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes ops-sweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(1200%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ops-grid::before,
+  .ops-marquee,
+  .ops-pulse,
+  .ops-sweep {
+    animation: none !important;
+  }
+  .ops-scanlines::after {
+    display: none;
   }
 }

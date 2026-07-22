@@ -30,23 +30,27 @@ export function CompanyDirectory({
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="relative max-w-md">
+      {/* Query line, styled as a console prompt rather than a search box. */}
+      <div className="relative flex max-w-md items-center border border-[var(--ops-line)] bg-[color-mix(in_oklab,var(--ops-accent)_5%,transparent)] focus-within:border-[var(--ops-line-strong)]">
         <Search
-          className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+          className="pointer-events-none ml-3 size-3.5 shrink-0 text-[var(--ops-accent)]"
           aria-hidden
         />
         <Input
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder={`Search ${entityLabel.toLowerCase()}...`}
-          className="pl-9"
+          placeholder={`filter ${entityLabel.toLowerCase()}...`}
+          className="h-9 border-0 bg-transparent pl-2.5 font-mono text-xs tracking-[0.1em] uppercase focus-visible:ring-0"
           aria-label={`Search ${entityLabel}`}
         />
+        <span className="mr-3 hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground sm:inline">
+          {filtered.length}/{companies.length}
+        </span>
       </div>
       {filtered.length === 0 ? (
-        <p className="py-16 text-center text-sm text-muted-foreground">
-          No {entityLabel.toLowerCase()} match &ldquo;{query}&rdquo;.
+        <p className="py-16 text-center font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+          No {entityLabel.toLowerCase()} match &ldquo;{query}&rdquo;
         </p>
       ) : (
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

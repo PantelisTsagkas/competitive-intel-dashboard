@@ -3,9 +3,10 @@ import { cn } from "@/lib/utils";
 import type { Company } from "@/lib/types";
 
 /**
- * Logo image on a white tile when the dataset provides one (keeps mixed
- * transparent/solid assets consistent in both themes), monogram badge
- * otherwise.
+ * Logo image on a white tile when the dataset provides one, monogram badge
+ * otherwise. The tile stays white on the dark console: brand assets are a mix
+ * of transparent and solid, and a white chip is the only backing that keeps
+ * every one of them legible.
  */
 export function CompanyLogoBadge({
   company,
@@ -17,13 +18,12 @@ export function CompanyLogoBadge({
   const box = size === "lg" ? "size-14" : "size-11";
 
   if (company.logo.src) {
-    // Wordmark logos want a wide tile; white keeps mixed assets consistent
-    // in both themes.
+    // Wordmark logos want a wide tile.
     return (
       <span
         className={cn(
           size === "lg" ? "h-14 w-24 p-2.5" : "h-11 w-[4.5rem] p-2",
-          "flex shrink-0 items-center justify-center overflow-hidden rounded-md border border-border/70 bg-white",
+          "flex shrink-0 items-center justify-center overflow-hidden border border-[var(--ops-line-strong)] bg-white",
         )}
       >
         <Image
@@ -41,7 +41,7 @@ export function CompanyLogoBadge({
     <span
       className={cn(
         box,
-        "flex shrink-0 items-center justify-center rounded-md font-mono font-bold text-white",
+        "flex shrink-0 items-center justify-center font-mono font-bold text-white",
         size === "lg" ? "text-lg" : "text-sm",
       )}
       style={{ backgroundColor: company.logo.color }}
